@@ -1,0 +1,32 @@
+CREATE DATABASE db_toko;
+
+USE db_toko;
+------------------------------------------------------------------------------------------
+CREATE TABLE stock (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kode_barang VARCHAR(30) UNIQUE,
+    nama_barang VARCHAR(100),
+    stok INT DEFAULT 0,
+    harga_beli DECIMAL(12,2),
+    harga_jual DECIMAL(12,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+------------------------------------------------------------------------------------------
+CREATE TABLE transaksi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tanggal DATETIME DEFAULT CURRENT_TIMESTAMP,
+    kode_barang VARCHAR(30),
+    jenis ENUM('MASUK','KELUAR'),
+    qty INT,
+    keterangan VARCHAR(255)
+);
+------------------------------------------------------------------------------------------
+CREATE TABLE penjualan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tanggal DATETIME DEFAULT CURRENT_TIMESTAMP,
+    kode_barang VARCHAR(30),
+    nama_barang VARCHAR(100),
+    qty INT,
+    harga DECIMAL(12,2),
+    total DECIMAL(12,2)
+);
